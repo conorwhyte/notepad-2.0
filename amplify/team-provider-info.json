@@ -10,6 +10,14 @@
       "StackName": "amplify-notepad20-dev-171106",
       "StackId": "arn:aws:cloudformation:eu-west-1:744962777212:stack/amplify-notepad20-dev-171106/50977b30-68ca-11ec-9940-0a70a9aa49dd",
       "AmplifyAppId": "d1ezzsx1br2vsw"
+    },
+    "categories": {
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d1ezzsx1br2vsw",
+          "type": "cicd"
+        }
+      }
     }
   }
 }
