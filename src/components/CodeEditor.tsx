@@ -1,6 +1,6 @@
 import AceEditor from "react-ace";
-import "ace-builds/src-noconflict/mode-java";
-import "ace-builds/src-noconflict/theme-github";
+import "ace-builds/src-noconflict/mode-javascript";
+import "ace-builds/src-noconflict/theme-textmate";
 import './CodeEditor.css';
 
 const CodeEditor = () => {
@@ -13,11 +13,11 @@ const CodeEditor = () => {
             <AceEditor
                 mode="javascript"
                 width="100%"
-                height="calc(100vh - 75px)"
+                height="calc(100vh - 82px)"
                 highlightActiveLine={false}
                 fontSize={16}
                 showPrintMargin={false}
-                theme="github"
+                theme="textmate"
                 onChange={onChange}
                 name="code-editor"
                 editorProps={{ $blockScrolling: true }}
