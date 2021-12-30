@@ -1,8 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { Spin } from 'antd';
 
-
-const CodeEditor = lazy(() => import('./CodeEditor.tsx'));
+const CodeEditor = lazy(() => import('./CodeEditor'));
 
 const Editor = () => {
     return (
