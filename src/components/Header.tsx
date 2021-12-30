@@ -1,6 +1,6 @@
 import { Space, PageHeader, Button, Tag, Dropdown } from 'antd';
 import { BarsOutlined, FormOutlined, SaveOutlined, ToolOutlined } from '@ant-design/icons';
-import FormatDropdown from './FormatDropdown.tsx';
+import FormatDropdown from './FormatDropdown';
 import './Header.css';
 
 const Header = () => {
@@ -10,10 +10,10 @@ const Header = () => {
                 title="Notepad"
                 tags={<Tag color="blue">New note</Tag>}
                 extra={[
-                    <Space wrap>
-                        <Dropdown.Button icon={<ToolOutlined />} size="large" overlay={FormatDropdown} />
-                        <Button icon={<BarsOutlined />} size="large" />
-                        <Button icon={<SaveOutlined />} size="large" />
+                    <Space wrap key='options'>
+                        <Dropdown.Button key="format" icon={<ToolOutlined />} size="large" overlay={<FormatDropdown />} />
+                        <Button key="list" icon={<BarsOutlined />} size="large" />
+                        <Button key="save" icon={<SaveOutlined />} size="large" />
                     </Space>
                     
                 ]}

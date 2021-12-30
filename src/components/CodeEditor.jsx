@@ -47,6 +47,7 @@ const CodeEditor = () => {
                 theme="textmate"
                 onChange={debouncedChangeHandler}
                 name="code-editor"
+                setOptions={{ useWorker: false }}
                 editorProps={{ $blockScrolling: true }}
             />
         </div>
