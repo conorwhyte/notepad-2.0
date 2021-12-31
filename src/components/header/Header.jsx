@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { Space, PageHeader, Button, Tag, Dropdown } from 'antd';
 import { BarsOutlined, FormOutlined, SaveOutlined, ToolOutlined } from '@ant-design/icons';
 import FormatDropdown from './FormatDropdown';
-import './Header.css';
 import SaveModal from './SaveModal';
 import ListNotesDrawer from './ListNotesDrawer';
+import './Header.css';
 
 const Header = () => {
     const [isModalVisible, setIsModalVisible] = useState(false);

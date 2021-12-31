@@ -1,16 +1,25 @@
 import { Input, Modal } from 'antd';
-import { useState } from 'react';
+import { memo, useState } from 'react';
+import { addNote } from '../../api/note.service.ts';
+import { useAppContext } from '../../store/appContext';
+import { getValue } from '../../store/selectors.js';
 
 const SaveModal = ({ isModalVisible, onClose }) => {
     const [ name, setName ] = useState('');
+    const [ state ] = useAppContext();
+    const value = getValue(state); 
 
     const onChange = (e) => {
         setName(e.target.value);
     };
 
-    const onOK = () => {
+    const onOK = async () => {
         // Save
+        const status = await addNote(name, value);
 
+        console.log(status);
+
+        // Set success and close
         onClose();
     };
 
@@ -21,4 +30,4 @@ const SaveModal = ({ isModalVisible, onClose }) => {
     );
 };
 
-export default SaveModal;
+export default memo(SaveModal);

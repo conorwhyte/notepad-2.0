@@ -1,6 +1,10 @@
 import { Drawer } from 'antd';
+import { listNotes } from '../../api/note.service.ts';
 
 const ListNotesDrawer = ({ isDrawerVisible, onClose }) => {
+    const notes = listNotes();
+
+    console.log('Notes:: ', notes);
 
     return (
         <Drawer
