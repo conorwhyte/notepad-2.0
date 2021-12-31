@@ -17,6 +17,9 @@
           "appId": "d1ezzsx1br2vsw",
           "type": "cicd"
         }
+      },
+      "auth": {
+        "notepad207bc68c33": {}
       }
     }
   }
