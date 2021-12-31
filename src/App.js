@@ -1,6 +1,6 @@
 import StoreWrapper from './store/StoreWrapper';
-import Header from './components/Header.tsx';
-import Editor from './components/Editor.tsx';
+import Header from './components/header/Header';
+import Editor from './components/editor/Editor';
 import './App.css';
 
 function App() {

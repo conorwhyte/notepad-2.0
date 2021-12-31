@@ -1,13 +1,12 @@
 import { useCallback, useEffect } from 'react';
 import AceEditor from "react-ace";
 import debounce from 'lodash.debounce';
-import { useAppContext } from '../store/appContext.js';
-import { getValue } from '../store/selectors.js';
-import { changeValue } from '../store/actions.js';
+import { useAppContext } from '../../store/appContext.js';
+import { getValue } from '../../store/selectors.js';
+import { changeValue } from '../../store/actions.js';
 
 import "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/theme-textmate";
-import './CodeEditor.css';
 
 const CodeEditor = () => {
     const [ state, dispatch ] = useAppContext();

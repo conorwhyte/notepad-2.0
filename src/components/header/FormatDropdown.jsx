@@ -1,6 +1,6 @@
 import { Menu } from 'antd';
-import { convertJsonToYaml, convertYamlToJson, formatJson } from '../store/actions';
-import { useAppContext } from '../store/appContext.js';
+import { convertJsonToYaml, convertYamlToJson, formatJson } from '../../store/actions';
+import { useAppContext } from '../../store/appContext.js';
 
 const { SubMenu, Item } = Menu;
 
