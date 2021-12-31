@@ -1,8 +1,10 @@
 import { formatJson, jsonToYaml, yamlToJson } from '../utils/formatter';
-import { CHANGE_VALUE, CONVERT_JSON_TO_YAML, CONVERT_YAML_TO_JSON, FORMAT_JSON } from './actions';
+import { CHANGE_VALUE, CONVERT_JSON_TO_YAML, CONVERT_YAML_TO_JSON, FORMAT_JSON, OPEN_NOTE } from './actions';
 
 export const initialState = {
+    name: 'New note',
     value: '',
+    id: '',
 };
 
 export function Reducer(state, action) {
@@ -12,6 +14,8 @@ export function Reducer(state, action) {
         ...state,
         value: action.value,
       };
+
+    // Formatters 
     case FORMAT_JSON:
       const formattedValue = formatJson(state.value);
       return {
@@ -29,6 +33,16 @@ export function Reducer(state, action) {
       return {
         ...state,
         value: json,
+      };
+
+    // Open Note
+    case OPEN_NOTE:
+      const { body, name, id } = action;
+      return {
+        ...state,
+        value: body,
+        name,
+        id,
       };
     default:
       throw new Error('Unknown action');

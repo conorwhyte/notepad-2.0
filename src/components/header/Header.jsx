@@ -4,9 +4,12 @@ import { BarsOutlined, FormOutlined, SaveOutlined, ToolOutlined } from '@ant-des
 import FormatDropdown from './FormatDropdown';
 import SaveModal from './SaveModal';
 import ListNotesDrawer from './ListNotesDrawer';
+import { useAppContext } from '../../store/appContext';
+import { getName } from '../../store/selectors';
 import './Header.css';
 
 const Header = () => {
+    const [ state ] = useAppContext();
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [isDrawerVisible, setIsDrawerVisible] = useState(false);
 
@@ -30,7 +33,7 @@ const Header = () => {
         <div className="site-page-header">
             <PageHeader
                 title="Notepad"
-                tags={<Tag color="blue">New note</Tag>}
+                tags={<Tag color="blue">{getName(state)}</Tag>}
                 extra={[
                     <Space wrap key='options'>
                         <Dropdown.Button key="format" icon={<ToolOutlined />} size="large" overlay={<FormatDropdown />} />

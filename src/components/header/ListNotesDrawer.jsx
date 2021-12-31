@@ -1,10 +1,28 @@
-import { Drawer } from 'antd';
+import { Button, Drawer, List } from 'antd';
+import { useEffect } from 'react';
+import { useState } from 'react';
 import { listNotes } from '../../api/note.service.ts';
+import { openNote } from '../../store/actions';
+import { useAppContext } from '../../store/appContext';
 
 const ListNotesDrawer = ({ isDrawerVisible, onClose }) => {
-    const notes = listNotes();
+    const [, dispatch ] = useAppContext();
+    const [ notes, setNotes ] = useState([]);
+    
+    const getNotes = async () => {
+        const savedNotes = await listNotes();
+        setNotes(savedNotes);
+    };
 
-    console.log('Notes:: ', notes);
+    useEffect(() => {
+        getNotes();
+    }, []);
+
+    const onOpenNote = (item) => {
+        const { name, body, id } = item;
+        
+        dispatch(openNote({ name, body, id }));
+    };
 
     return (
         <Drawer
@@ -14,10 +32,27 @@ const ListNotesDrawer = ({ isDrawerVisible, onClose }) => {
             onClose={onClose}
             visible={isDrawerVisible}
             key="right"
+            size="large"
         >
-            <p>Some contents...</p>
-            <p>Some contents...</p>
-            <p>Some contents...</p>
+            <List
+                itemLayout="horizontal"
+                dataSource={notes}
+                renderItem={item => (
+                <List.Item 
+                    actions={[
+                        <Button onClick={() => onOpenNote(item)} size="small">Open</Button>,
+                        <Button size="small">Delete</Button>
+                    ]}
+                >
+                    <List.Item.Meta
+                        title={item.name}
+                        description={item.date}
+                    />
+
+                    <div> {item.body.substring(0, 100)} </div>
+                </List.Item>
+                )}
+            />
         </Drawer>
     );
     
