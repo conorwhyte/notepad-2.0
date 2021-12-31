@@ -66,6 +66,7 @@ export type Note = {
   date?: string | null,
   createdAt: string,
   updatedAt: string,
+  owner?: string | null,
 };
 
 export type UpdateNoteInput = {
@@ -125,6 +126,7 @@ export type CreateNoteMutation = {
     date?: string | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -142,6 +144,7 @@ export type UpdateNoteMutation = {
     date?: string | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -159,6 +162,7 @@ export type DeleteNoteMutation = {
     date?: string | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -175,6 +179,7 @@ export type GetNoteQuery = {
     date?: string | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -195,9 +200,14 @@ export type ListNotesQuery = {
       date?: string | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
+};
+
+export type OnCreateNoteSubscriptionVariables = {
+  owner?: string | null,
 };
 
 export type OnCreateNoteSubscription = {
@@ -209,7 +219,12 @@ export type OnCreateNoteSubscription = {
     date?: string | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
+};
+
+export type OnUpdateNoteSubscriptionVariables = {
+  owner?: string | null,
 };
 
 export type OnUpdateNoteSubscription = {
@@ -221,7 +236,12 @@ export type OnUpdateNoteSubscription = {
     date?: string | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
+};
+
+export type OnDeleteNoteSubscriptionVariables = {
+  owner?: string | null,
 };
 
 export type OnDeleteNoteSubscription = {
@@ -233,5 +253,6 @@ export type OnDeleteNoteSubscription = {
     date?: string | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };

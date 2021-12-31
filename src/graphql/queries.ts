@@ -11,6 +11,7 @@ export const getNote = /* GraphQL */ `
       date
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -28,6 +29,7 @@ export const listNotes = /* GraphQL */ `
         date
         createdAt
         updatedAt
+        owner
       }
       nextToken
     }

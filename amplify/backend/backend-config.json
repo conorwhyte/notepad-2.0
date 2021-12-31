@@ -6,7 +6,23 @@
       "lastPushTimeStamp": "2021-12-29T17:18:39.458Z"
     }
   },
-  "api": {},
+  "api": {
+    "notepad20": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authnotepad207bc68c33"
+            }
+          },
+          "additionalAuthenticationProviders": []
+        }
+      }
+    }
+  },
   "auth": {
     "notepad207bc68c33": {
       "service": "Cognito",
