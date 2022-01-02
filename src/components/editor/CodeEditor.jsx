@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback } from 'react';
 import AceEditor from "react-ace";
 import debounce from 'lodash.debounce';
 import { useAppContext } from '../../store/appContext.js';
@@ -15,21 +15,6 @@ const CodeEditor = () => {
     const onChange = (newValue) => {
         dispatch(changeValue(newValue));
     };
-
-    const handleUnload = (e) => {
-        // More logic in here
-        if (value !== '') {
-            e.preventDefault();
-            e.returnValue = true;
-        }
-    };
-
-    useEffect(() => {
-        window.addEventListener('beforeunload', handleUnload);
-        return () => {
-            window.removeEventListener('beforeunload', handleUnload);
-        };
-    });
 
     const debouncedChangeHandler = useCallback(debounce(onChange, 100), []); // eslint-disable-line react-hooks/exhaustive-deps
 

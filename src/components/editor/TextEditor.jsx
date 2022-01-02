@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useCallback } from "react";
 import debounce from 'lodash.debounce';
 import ReactQuill from 'react-quill';
 import { changeValue } from "../../store/actions";
@@ -13,21 +13,6 @@ const TextEditor = () => {
     const onChange = (newValue) => {
         dispatch(changeValue(newValue));
     };
-
-    const handleUnload = (e) => {
-        // More logic in here
-        if (value !== '') {
-            e.preventDefault();
-            e.returnValue = true;
-        }
-    };
-
-    useEffect(() => {
-        window.addEventListener('beforeunload', handleUnload);
-        return () => {
-            window.removeEventListener('beforeunload', handleUnload);
-        };
-    });
 
     const debouncedChangeHandler = useCallback(debounce(onChange, 100), []); // eslint-disable-line react-hooks/exhaustive-deps
 

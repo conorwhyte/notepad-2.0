@@ -1,6 +1,7 @@
-import { Button, Drawer, List } from 'antd';
+import { Button, Drawer, List, Popconfirm } from 'antd';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { deleteNote } from '../../api/note.service';
 import { listNotes } from '../../api/note.service.ts';
 import { openNote } from '../../store/actions';
 import { useAppContext } from '../../store/appContext';
@@ -20,19 +21,26 @@ const ListNotesDrawer = ({ isDrawerVisible, onClose }) => {
 
     const onOpenNote = (item) => {
         const { name, body, id } = item;
-        
         dispatch(openNote({ name, body, id }));
+
+        onClose();
+    };
+
+    const onConfirm = async (item) => {
+        const { id } = item;
+
+        await deleteNote(id);
+        getNotes();
     };
 
     return (
         <Drawer
             title="Saved notes"
             placement="right"
-            closable={false}
             onClose={onClose}
             visible={isDrawerVisible}
             key="right"
-            size="large"
+            width={500}
         >
             <List
                 itemLayout="horizontal"
@@ -41,7 +49,16 @@ const ListNotesDrawer = ({ isDrawerVisible, onClose }) => {
                 <List.Item 
                     actions={[
                         <Button onClick={() => onOpenNote(item)} size="small">Open</Button>,
-                        <Button size="small">Delete</Button>
+
+                        <Popconfirm
+                            placement="topRight"
+                            title={`Are you sure you want to delete ${item.name}?`}
+                            onConfirm={() => onConfirm(item)}
+                            okText="Yes"
+                            cancelText="No"
+                        >
+                            <Button size="small">Delete</Button>
+                        </Popconfirm>
                     ]}
                 >
                     <List.Item.Meta
@@ -49,7 +66,6 @@ const ListNotesDrawer = ({ isDrawerVisible, onClose }) => {
                         description={item.date}
                     />
 
-                    <div> {item.body.substring(0, 100)} </div>
                 </List.Item>
                 )}
             />

@@ -1,5 +1,5 @@
 import { formatJson, jsonToYaml, yamlToJson } from '../utils/formatter';
-import { CHANGE_VALUE, CHANGE_EDITOR, CONVERT_JSON_TO_YAML, CONVERT_YAML_TO_JSON, FORMAT_JSON, OPEN_NOTE } from './actions';
+import { CHANGE_VALUE, CHANGE_EDITOR, CONVERT_JSON_TO_YAML, CONVERT_YAML_TO_JSON, DISABLE_WARNING, FORMAT_JSON, OPEN_NOTE } from './actions';
 
 export const initialState = {
     name: 'New note',
@@ -8,6 +8,7 @@ export const initialState = {
     
     // Layout
     editor: 'word',
+    showWarning: false,
 };
 
 export function Reducer(state, action) {
@@ -16,13 +17,18 @@ export function Reducer(state, action) {
       return {
         ...state,
         value: action.value,
+        showWarning: true,
       };
     case CHANGE_EDITOR: 
       return {
         ...state,
         editor: action.editor,
       };
-
+    case DISABLE_WARNING: 
+      return {
+        ...state,
+        showWarning: false,
+      };
     // Formatters 
     case FORMAT_JSON:
       const formattedValue = formatJson(state.value);

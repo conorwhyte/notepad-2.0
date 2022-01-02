@@ -6,11 +6,13 @@ import SaveModal from './SaveModal';
 import ListNotesDrawer from './ListNotesDrawer';
 import EditorChooser from './EditorChooser';
 import { useAppContext } from '../../store/appContext';
-import { getName } from '../../store/selectors';
+import { getId, getName, getValue } from '../../store/selectors';
 import './Header.css';
+import { updateNote } from '../../api/note.service';
+import { disableWarning } from '../../store/actions';
 
 const Header = () => {
-    const [ state ] = useAppContext();
+    const [ state, dispatch ] = useAppContext();
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [isDrawerVisible, setIsDrawerVisible] = useState(false);
 
@@ -18,8 +20,17 @@ const Header = () => {
         setIsModalVisible(false);
     };
 
-    const onOpenModal = () => {
-        setIsModalVisible(true);
+    const onOpenModal = async () => {
+        const id = getId(state);
+
+        if (!id) {
+            setIsModalVisible(true);
+        } else {
+            const body = getValue(state);
+            await updateNote(id, body);
+        }
+
+        dispatch(disableWarning());
     };
 
     const onOpenDrawer = () => {

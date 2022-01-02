@@ -1,7 +1,7 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { Spin } from 'antd';
 import { useAppContext } from '../../store/appContext';
-import { getEditorValue } from '../../store/selectors';
+import { getEditorValue, shouldShowWarning } from '../../store/selectors';
 
 const CodeEditor = lazy(() => import('./CodeEditor'));
 const TextEditor = lazy(() => import('./TextEditor'));
@@ -9,6 +9,20 @@ const TextEditor = lazy(() => import('./TextEditor'));
 const Editor = () => {
     const [ state ] = useAppContext();
     const isWord = getEditorValue(state) === 'word';
+
+    const handleUnload = (e) => {
+        if (shouldShowWarning(state)) {
+            e.preventDefault();
+            e.returnValue = true;
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener('beforeunload', handleUnload);
+        return () => {
+            window.removeEventListener('beforeunload', handleUnload);
+        };
+    });
 
     return (
         <Suspense fallback={<Spin />}>
