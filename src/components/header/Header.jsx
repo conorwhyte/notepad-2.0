@@ -4,6 +4,7 @@ import { BarsOutlined, FormOutlined, SaveOutlined, ToolOutlined } from '@ant-des
 import FormatDropdown from './FormatDropdown';
 import SaveModal from './SaveModal';
 import ListNotesDrawer from './ListNotesDrawer';
+import EditorChooser from './EditorChooser';
 import { useAppContext } from '../../store/appContext';
 import { getName } from '../../store/selectors';
 import './Header.css';
@@ -36,6 +37,7 @@ const Header = () => {
                 tags={<Tag color="blue">{getName(state)}</Tag>}
                 extra={[
                     <Space wrap key='options'>
+                        <EditorChooser />
                         <Dropdown.Button key="format" icon={<ToolOutlined />} size="large" overlay={<FormatDropdown />} />
                         <Button onClick={onOpenDrawer} key="list" icon={<BarsOutlined />} size="large" />
                         <Button onClick={onOpenModal} key="save" icon={<SaveOutlined />} size="large" />

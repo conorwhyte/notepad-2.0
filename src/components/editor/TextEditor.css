@@ -1,0 +1,13 @@
+@import '~react-quill/dist/quill.bubble.css';
+
+#quill-container {
+    height: auto;
+    min-height: 100%;
+    padding: 15px 30px;
+}
+
+#quill-container .ql-editor {
+    font-size: 18px;
+    overflow-y: visible; 
+}
+  
