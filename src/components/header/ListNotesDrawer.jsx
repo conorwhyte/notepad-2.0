@@ -40,7 +40,7 @@ const ListNotesDrawer = ({ isDrawerVisible, onClose }) => {
             onClose={onClose}
             visible={isDrawerVisible}
             key="right"
-            width={500}
+            width="40%"
         >
             <List
                 itemLayout="horizontal"
