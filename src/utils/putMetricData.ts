@@ -33,8 +33,7 @@ const putMetricData =  async (name: string, value: number, dimensions: Dimension
     
     const command = new PutMetricDataCommand(input);
 
-    const resp = await client.send(command);
-    console.log('Resp: :', resp);  
+    await client.send(command);
 };
 
 export const publishWebVitals = (metric: Metric) => {
