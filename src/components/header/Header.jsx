@@ -44,7 +44,6 @@ const Header = () => {
     return (
         <div className="site-page-header">
             <PageHeader
-                title="Notepad"
                 tags={<Tag color="blue">{getName(state)}</Tag>}
                 extra={[
                     <Space wrap key='options'>
