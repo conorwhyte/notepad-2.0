@@ -7,7 +7,7 @@ export const initialState = {
     id: '',
     
     // Layout
-    editor: 'word',
+    editor: 'code',
     showWarning: false,
 };
 
